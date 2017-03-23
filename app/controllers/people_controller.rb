@@ -10,8 +10,14 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new
-    @person.create(person_params)
+    # byebug
+    @person = Person.create(person_params)
+    render json: @person
+  end
+
+  def show
+    @person = Person.find(params[:id])
+    render json: @person
   end
 
   def edit
@@ -21,6 +27,14 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
     @person.update(person_params)
+    render json: @person
+  end
+
+  def destroy
+    @person = Person.find(params[:id])
+    @person.delete
+    @people = Person.all
+    render json: @people
   end
 
   private
