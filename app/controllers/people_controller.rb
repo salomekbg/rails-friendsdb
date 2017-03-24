@@ -10,7 +10,6 @@ class PeopleController < ApplicationController
   end
 
   def create
-    # byebug
     @person = Person.create(person_params)
     render json: @person
   end
@@ -40,7 +39,7 @@ class PeopleController < ApplicationController
   private
 
   def person_params
-    params.require(:person).permit(:name, :favoriteCity)
+    params.require(:data).permit(:name, :favoriteCity)
   end
 
 end
